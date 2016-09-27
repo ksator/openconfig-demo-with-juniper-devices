@@ -14,11 +14,12 @@
       src={{ playbook_dir }}/bgp.j2 
       dest={{ playbook_dir }}/{{ inventory_hostname }}.conf
       
-   #- name: push OC BGP configuration on devices and commit
-     #junos_template:
-      ##http://docs.ansible.com/ansible/junos_template_module.html
-      #provider: "{{  credentials }}"
-      #src: "{{playbook_dir}}/{{ inventory_hostname }}.conf"
+   - name: push OC BGP configuration on devices and commit
+     junos_template:
+      #http://docs.ansible.com/ansible/junos_template_module.html
+      provider: "{{  credentials }}"
+      src: "{{playbook_dir}}/{{ inventory_hostname }}.conf"
+      comment: "OC BGP configuration from Ansible"
 
  - name: wait for peers to establish BGP connections
    hosts: localhost
@@ -47,7 +48,7 @@
       retries: 10
       interval: 2
      with_items:
-     - "{{ neighbors }}"
+     - "{{ bgp_neighbors }}"
 
    - name: check if junos devices learnt some routes with BGP
      junos_command:
@@ -60,4 +61,4 @@
       retries: 10
       interval: 2
      with_items:
-     - "{{ neighbors }}"
+     - "{{ bgp_neighbors }}"
