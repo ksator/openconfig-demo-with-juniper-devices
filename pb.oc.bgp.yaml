@@ -54,6 +54,10 @@
       #http://docs.ansible.com/ansible/junos_command_module.html
       provider: "{{  credentials }}"
       commands:
-       - show route receive-protocol bgp {{item.address}} table inet.0
+       - show route receive-protocol bgp "{{ item.address }}" table inet.0
+      waitfor:
+       - "result[0].route-information.route-table.total-route-count gt 10"
+      retries: 10
+      interval: 2
      with_items:
      - "{{ neighbors }}"
