@@ -1,0 +1,38 @@
+openconfig-bgp:bgp {
+    neighbors {
+{% for item in neighbors %}
+        neighbor {{ item.address }} {
+            config {
+                peer-as {{ item.as }};
+                peer-group {{ item.group }} ;
+            }
+        }
+{% endfor %}
+    }
+    peer-groups {
+{% for item in groups %} 
+        peer-group {{ item.name }} {
+            config {
+                local-as {{ item.local_as }};
+                peer-type {{ item.type }};
+            }
+            apply-policy {
+                config {
+                    import-policy {{ item.import_policy }};
+                    export-policy {{ item.export_policy }};
+                }
+            }
+        }
+{% endfor %}
+    }
+}
+policy-options {
+{% for item in groups %}
+    policy-statement {{ item.import_policy }} {
+        then accept;
+    }
+    policy-statement {{ item.export_policy }} {
+        then accept;
+    }
+{% for item in groups %}
+}
