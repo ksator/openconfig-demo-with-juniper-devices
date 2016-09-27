@@ -1,0 +1,59 @@
+---
+ - name: create BGP Openconfig configuration
+   hosts: Openconfig_Routers
+   connection: local
+   gather_facts: no
+
+   tasks:
+
+   - name: Build OC BGP configuration files from a template and save them locally
+     template: 
+      #http://docs.ansible.com/ansible/template_module.html
+      src={{playbook_dir}}/bgp.j2 
+      dest={{playbook_dir}}/{{ inventory_hostname }}.conf
+      
+   - name: push OC BGP configuration on devices and commit
+     junos_template:
+      #http://docs.ansible.com/ansible/junos_template_module.html
+      provider: "{{  credentials }}"
+      src: "{{playbook_dir}}/{{ inventory_hostname }}.conf"
+
+ - name: wait for peers to establish BGP connections
+   hosts: localhost
+   gather_facts: no
+
+   tasks:
+   - pause: seconds=25
+     #http://docs.ansible.com/ansible/pause_module.html
+
+ - name: check bgp states
+   hosts: Openconfig_Routers
+   connection: local
+   gather_facts: no
+
+   tasks:
+   - name: check bgp peers states
+     junos_command:
+      #http://docs.ansible.com/ansible/junos_command_module.html
+      provider: "{{  credentials }}"
+      commands:
+       - show bgp neighbor "{{ item.address }}"
+      waitfor:
+      - "result[0].bgp-information.bgp-peer.peer-state eq Established"
+      retries: 10
+      interval: 2
+     with_items:
+     - "{{ neighbors}}"
+
+  - name: check if junos devices learnt some routes with BGP
+    junos_command:
+      #http://docs.ansible.com/ansible/junos_command_module.html
+      provider: "{{  credentials }}"
+      commands:
+       - show route receive-protocol bgp {{item.address}} table inet.0
+      with_items:
+       - "{{ neighbors }}"
+    register:junos
+
+  - debug: msg="{{ junos.route-information.route-table.active-route-count }}"
+    #http://docs.ansible.com/ansible/debug_module.html
