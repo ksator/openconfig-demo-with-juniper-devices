@@ -3,6 +3,8 @@
    hosts: Openconfig_Routers
    connection: local
    gather_facts: no
+   tags:
+   - configuration
 
    tasks:
 
@@ -30,6 +32,8 @@
    hosts: Openconfig_Routers
    connection: local
    gather_facts: no
+   tags:
+   - audit
 
    tasks:
    - name: check bgp peers states
@@ -43,17 +47,13 @@
       retries: 10
       interval: 2
      with_items:
-     - "{{ neighbors}}"
+     - "{{ neighbors }}"
 
-  - name: check if junos devices learnt some routes with BGP
-    junos_command:
+   - name: check if junos devices learnt some routes with BGP
+     junos_command:
       #http://docs.ansible.com/ansible/junos_command_module.html
       provider: "{{  credentials }}"
       commands:
        - show route receive-protocol bgp {{item.address}} table inet.0
-      with_items:
-       - "{{ neighbors }}"
-    register:junos
-
-  - debug: msg="{{ junos.route-information.route-table.active-route-count }}"
-    #http://docs.ansible.com/ansible/debug_module.html
+     with_items:
+     - "{{ neighbors }}"
