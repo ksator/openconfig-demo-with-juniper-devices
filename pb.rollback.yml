@@ -1,0 +1,19 @@
+---
+ - name: Rollback configuration on junos devices
+   hosts: [Openconfig_Routers]
+   roles:       
+    - Juniper.junos
+   connection: local
+   gather_facts: no
+
+   tasks:
+
+   - name: Rollback junos configuration task
+     junos_rollback:
+      host={{ junos_host }}
+      user={{ ADMUSER }}
+      passwd={{ ADMPASS }}
+      logfile={{playbook_dir}}/rollback.log
+      diffs_file={{playbook_dir}}/{{ inventory_hostname }}.diff
+      rollback={{rbid}}
+      comment="configuration rolled back by Ansible"
