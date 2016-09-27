@@ -1,0 +1,32 @@
+language: python
+python:
+  - 2.7
+
+sudo: required
+dist: trusty
+
+env:
+  - ANSIBLE_VERSION=2.1.0.0
+  - ANSIBLE_VERSION=2.1.1.0
+  
+before_install:
+  - sudo apt-get install -y python-dev libxml2-dev python-pip libxslt1-dev build-essential libssl-dev libffi-dev
+
+install:
+  - pip install -r requirements.txt
+  - pip install -q ansible==$ANSIBLE_VERSION
+  - ansible-galaxy --force install Juniper.junos -p ./
+
+script:
+  - ansible-playbook pb.oc.bgp.yaml --syntax-check 
+  - ansible-playbook pb.rollback.yml --syntax-check
+
+branches:
+  only:
+   - master
+
+notifications:
+  email:
+    recipients:
+      - khelil.sator.git@gmail.com
+on_failure: always
