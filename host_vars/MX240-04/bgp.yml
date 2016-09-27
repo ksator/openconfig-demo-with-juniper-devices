@@ -1,11 +1,17 @@
 ---
-neighbors:
+bgp_neighbors:
    - address: 10.10.0.2
      as: 104
      group: OC
-groups:
+
+
+bgp_groups:
    - name: OC
      type: EXTERNAL
      local_as: 110
      import_policy: bgp-in
      export_policy: bgp-out
+
+
+
+

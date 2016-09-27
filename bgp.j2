@@ -1,6 +1,6 @@
 openconfig-bgp:bgp {
     neighbors {
-{% for item in neighbors %}
+{% for item in bgp_neighbors %}
         neighbor {{ item.address }} {
             config {
                 peer-as {{ item.as }};
@@ -10,7 +10,7 @@ openconfig-bgp:bgp {
 {% endfor %}
     }
     peer-groups {
-{% for item in groups %} 
+{% for item in bgp_groups %}
         peer-group {{ item.name }} {
             config {
                 local-as {{ item.local_as }};
@@ -27,12 +27,12 @@ openconfig-bgp:bgp {
     }
 }
 policy-options {
-{% for item in groups %}
+{% for item in bgp_groups %}
     policy-statement {{ item.import_policy }} {
         then accept;
     }
     policy-statement {{ item.export_policy }} {
         then accept;
     }
-{% for item in groups %}
+{% endfor %}
 }
