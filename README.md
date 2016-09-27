@@ -25,7 +25,7 @@ it also define the ip address of each device with the variable **junos_host**. T
 There is an **ansible.cfg** file at the root of the repository (https://github.com/ksator/openconfig-demo/blob/master/ansible.cfg).  
 It refers to our inventory file (**hosts**): So, despite the inventory file is not /etc/ansible/hosts, there is no need to add -i hosts to the ansible-playbook commands.  
 
-#####Ansible variables:   
+####Ansible variables:   
 **group_vars** and **host_vars** directories at the root of this repository define the variables for the hosts and for the group.  
 The inventory file (**hosts** file at the root of the repository) also defines some variables.   
 
