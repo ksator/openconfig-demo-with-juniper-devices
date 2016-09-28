@@ -8,6 +8,7 @@
 
     - name: check connectivity with ssh and netconf and rest ports on Junos devices
       wait_for: host={{ junos_host }} port={{ item }} timeout=5
+      #http://docs.ansible.com/ansible/wait_for_module.html
       with_items:
        - 22
        - 830
