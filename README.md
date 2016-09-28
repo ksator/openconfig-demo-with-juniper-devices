@@ -11,7 +11,7 @@ The Openconfig modules and the corrsponding translation scripts are alreday inst
 ## Automation
 
 ### Ansible
-I used Ansible to interact with the Juniper routers.
+Ansible to interact with the Juniper routers.
 
 ##### Ansible Inventory file:  
 The default 'hosts' file is supposed to live in /etc/ansible/hosts  
@@ -27,7 +27,7 @@ It refers to our inventory file (**hosts**): So, despite the inventory file is n
 **group_vars** and **host_vars** directories at the root of this repository define the variables. 
 **group_vars** defines the variables for the groups, **host_vars** defines the variables for the hosts.  
 The inventory file (**hosts** file at the root of the repository) also defines some variables (**junos_host**).     
-Ansible can find automatically the variables defined in **group_vars** and **host_vars** and the **hosts** file.  
+Ansible can find automatically the variables defined in the **group_vars** and **host_vars** directories and the **hosts** file.  
 
 ##### Ansible playbooks:  
 All playbooks are named **pb.*.yml**. They are at the root of the repository.    
