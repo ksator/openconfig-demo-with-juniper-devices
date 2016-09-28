@@ -32,6 +32,8 @@ All playbooks are named **pb.*.yml**. They are at the root of the repository.
 - **pb.oc.bgp.yaml** -This playbook use the template **bgp.j2** to render an Openconfig BGP configuration file for each device (**MX240-04.conf** and **FR-MX80-214.conf**). It then configure the devices. It then checks on the configured devices if the new operationnal state is equal to the desirated/expected operationnal state.    
 - **pb.rollback.yml** -This playbook rollbacks the configuration on the devices.  
 
+##### Usage:
+
 ##### Continuous integration with Travis CI
 There is a github webhook with Travis CI (https://travis-ci.org/ksator/openconfig-demo)
 The playbooks in  this repository are tested automatically by Travis CI.  
