@@ -1,4 +1,4 @@
 ---
 topology:
    - interface: xe-1/0/0
-     name: FR-MX80-214
+     neigbhbor: FR-MX80-214
