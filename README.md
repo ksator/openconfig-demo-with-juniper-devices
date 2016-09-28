@@ -1,4 +1,4 @@
-# About this project:   
+# What to find on this repo:   
 Automation content about Openconfig on Juniper devices.
 
 ## Openconfig repository
