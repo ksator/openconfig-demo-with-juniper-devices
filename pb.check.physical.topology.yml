@@ -12,7 +12,7 @@
        - "show interfaces terse {{ item.interface }}"
       provider: "{{ credentials }}"
       waitfor:
-       - "result[0]['interface-information']['physical-interface']['oper-status'] eq up"
+       - "result[0].interface-information.physical-interface.oper-status eq up"
      with_items: 
      - "{{ topology }}"
              
