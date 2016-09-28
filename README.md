@@ -7,7 +7,8 @@ The repository for publishing OpenConfig models is https://github.com/openconfig
 The published versions of OpenConfig modules can be found at https://github.com/openconfig/public/tree/master/release/models 
 
 ## Lab topology
-There are two Juniper routers. There are directly connected between them.   
+There are two Juniper routers. There are directly connected between them.  
+The Openconfig modules are alreday installed on our two devices. 
 
 ## Automation
 
