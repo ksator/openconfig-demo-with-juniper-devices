@@ -16,7 +16,7 @@ I used Ansible to interact with the Juniper routers.
 ##### Ansible Inventory file:  
 The default 'hosts' file is supposed to live in /etc/ansible/hosts  
 The inventory file we are using in this repository is **hosts**. It is at the root of the repository (https://github.com/ksator/openconfig-demo/blob/master/hosts), so it is not at the default place.  
-There are 2 devives in the inventory file: MX240-04 and FR-MX80-214.  They belong to the same group (Openconfig_Routers).   
+There are 2 devices in the inventory file: **MX240-04** and **FR-MX80-214**.  They belong to the group **Openconfig_Routers**.   
 This file also define the ip address of each device with the variable **junos_host**. This variable is reused in the playbooks.     
 
 ##### Ansible config file for ansible:   
