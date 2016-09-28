@@ -7,26 +7,28 @@
    - configuration
 
    tasks:
-
+   
    - name: Build OC BGP configuration files from a template and save them locally
      template: 
       #http://docs.ansible.com/ansible/template_module.html
       src={{ playbook_dir }}/bgp.j2 
-      dest={{ playbook_dir }}/{{ inventory_hostname }}.conf
-      
-   - name: push OC BGP configuration on devices and commit
+      dest={{ playbook_dir }}/{{ inventory_hostname }}.oc.bgp.conf
+
+  
+   - name: Backup locally the config from the routers. Push on routers OC BGP config from templates, and commit.
      junos_template:
       #http://docs.ansible.com/ansible/junos_template_module.html
       provider: "{{  credentials }}"
-      src: "{{playbook_dir}}/{{ inventory_hostname }}.conf"
+      src: "{{ playbook_dir }}/bgp.j2"
       comment: "OC BGP configuration from Ansible"
+      backup: true
 
  - name: wait for peers to establish BGP connections
    hosts: localhost
    gather_facts: no
 
    tasks:
-   - pause: seconds=25
+   - pause: seconds=20
      #http://docs.ansible.com/ansible/pause_module.html
 
  - name: check bgp states

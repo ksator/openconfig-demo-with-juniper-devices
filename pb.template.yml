@@ -1,0 +1,15 @@
+---
+ - name: create BGP Openconfig configuration from a template
+   hosts: Openconfig_Routers
+   connection: local
+   gather_facts: no
+
+   tasks:
+
+   - name: Build OC BGP configuration files from a template and save them locally
+     template: 
+      #http://docs.ansible.com/ansible/template_module.html
+      src={{ playbook_dir }}/bgp.j2 
+      dest={{ playbook_dir }}/{{ inventory_hostname }}.oc.bgp.conf
+
+
