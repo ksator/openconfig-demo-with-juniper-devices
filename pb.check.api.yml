@@ -6,11 +6,18 @@
 
    tasks:
 
+    - name: make sure netconf is configured on junos devices
+      junos_netconf:
+      #http://docs.ansible.com/ansible/junos_netconf_module.html
+       provider: "{{ credentials }}"
+       listens_on: 830
+       state: present
+
     - name: check connectivity with ssh and netconf and rest ports on Junos devices
-      wait_for: host={{ junos_host }} port={{ item }} timeout=5
+      wait_for: host={{ junos_host }} port={{ item }} timeout=10
       #http://docs.ansible.com/ansible/wait_for_module.html
       with_items:
        - 22
-       - 830
        - 3000
+       - 830
 
