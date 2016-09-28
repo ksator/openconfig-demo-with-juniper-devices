@@ -14,7 +14,7 @@ There are two Juniper routers. There are directly connected between them.
 I used Ansible to interact with the Juniper routers.
 
 ##### Ansible playbooks:  
-All playbooks are named **pb.*.yml**  
+All playbooks are named **pb.*.yml**. They are at the root of the repository.    
 - **pb.oc.bgp.yaml** -This playbook configures the devices with Openconfig BGP. It also checks the new operationnal states of the configured devices.  
 - **pb.rollback.yml** -This playbook rollbacks the configuration on the devices.  
 
