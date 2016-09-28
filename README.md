@@ -39,7 +39,7 @@ The files **.travis.yml** and **requirements.txt** at the root of this repositor
 ansible-playbook has a built in option to check only the playbook's syntax (--syntax-check). This is how Travis is testing our playbooks that interact with Junos. If there are any syntax error, Travis will fail the build and output the errors in the log. 
 
 
-##### More examples on of how to use Ansible with Junos:   
+##### More examples on of how to use Ansible with Juniper devices:   
 For more examples, you can visit this repository https://github.com/ksator/ansible-training-for-junos
 
 ## Contributions, bugs, questions, enhancement requests:      
