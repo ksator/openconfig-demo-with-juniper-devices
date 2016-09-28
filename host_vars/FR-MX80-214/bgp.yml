@@ -1,5 +1,5 @@
 bgp_neighbors:
-   - {address: 10.10.0.1, as: 110, group: OC}
+   - {address: 10.10.0.1, local_address: 10.10.0.2, as: 110, group: OC}
 
 bgp_groups:
    - {name: OC, type: EXTERNAL, local_as: 104, import_policy: bgp-in, export_policy: bgp-out}
