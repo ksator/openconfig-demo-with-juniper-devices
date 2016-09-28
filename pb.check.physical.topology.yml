@@ -22,7 +22,7 @@
       commands:
        - show lldp neighbors interface {{ item.interface }}
       waitfor:
-       - "result[0].lldp-neighbors-information.lldp-neighbor-information.lldp-remote-system-name contains {{ item.name }}"
+       - "result[0].lldp-neighbors-information.lldp-neighbor-information.lldp-remote-system-name contains {{ item.neighbor }}"
      with_items:
      - "{{ topology }}"
   
