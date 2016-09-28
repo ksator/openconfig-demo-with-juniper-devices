@@ -13,15 +13,11 @@ There are two Juniper routers. There are directly connected between them.
 ### Ansible
 I used Ansible to interact with the Juniper routers.
 
-##### Ansible playbooks:  
-All playbooks are named **pb.*.yml**. They are at the root of the repository.    
-- **pb.oc.bgp.yaml** -This playbook use the template **bgp.j2** to render an Openconfig BGP configuration file for each device (**MX240-04.conf** and **FR-MX80-214.conf**). It then configure the devices. It then checks on the configured devices if the new operationnal state is equal to the desirated/expected operationnal state.    
-- **pb.rollback.yml** -This playbook rollbacks the configuration on the devices.  
-
 ##### Ansible Inventory file:  
 The default 'hosts' file is supposed to live in /etc/ansible/hosts  
 The inventory file we are using in this repository is **hosts**. It is at the root of the repository (https://github.com/ksator/openconfig-demo/blob/master/hosts), so it is not at the default place.  
-it also define the ip address of each device with the variable **junos_host**. This variable is reused in the playbooks.     
+There are 2 devives in the inventory file: MX240-04 and FR-MX80-214.  They belong to the same group (Openconfig_Routers).   
+This file also define the ip address of each device with the variable **junos_host**. This variable is reused in the playbooks.     
 
 ##### Ansible config file for ansible:   
 There is an **ansible.cfg** file at the root of the repository (https://github.com/ksator/openconfig-demo/blob/master/ansible.cfg).  
@@ -30,6 +26,11 @@ It refers to our inventory file (**hosts**): So, despite the inventory file is n
 #### Ansible variables:   
 **group_vars** and **host_vars** directories at the root of this repository define the variables for the hosts and for the group.  
 The inventory file (**hosts** file at the root of the repository) also defines some variables.   
+
+##### Ansible playbooks:  
+All playbooks are named **pb.*.yml**. They are at the root of the repository.    
+- **pb.oc.bgp.yaml** -This playbook use the template **bgp.j2** to render an Openconfig BGP configuration file for each device (**MX240-04.conf** and **FR-MX80-214.conf**). It then configure the devices. It then checks on the configured devices if the new operationnal state is equal to the desirated/expected operationnal state.    
+- **pb.rollback.yml** -This playbook rollbacks the configuration on the devices.  
 
 ##### Continuous integration with Travis CI
 There is a github webhook with Travis CI (https://travis-ci.org/ksator/openconfig-demo)
