@@ -1,0 +1,15 @@
+---
+ - name: check connectivity with ssh and netconf and rest ports on Junos devices
+   hosts: [Openconfig_Routers]
+   connection: local
+   gather_facts: no
+
+   tasks:
+
+    - name: check connectivity with ssh and netconf and rest ports on Junos devices
+      wait_for: host={{ junos_host }} port={{ item }} timeout=5
+      with_items:
+       - 22
+       - 830
+       - 3000
+
