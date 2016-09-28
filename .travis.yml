@@ -20,7 +20,7 @@ install:
 script:
   - ansible-playbook pb.oc.bgp.yaml --syntax-check 
   - ansible-playbook pb.rollback.yml --syntax-check
-  - ansible-playbook pb.template.yaml
+  - ansible-playbook pb.template.yml
 
 branches:
   only:
