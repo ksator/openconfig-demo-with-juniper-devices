@@ -1,5 +1,5 @@
 ---
- - name: check if junos devices can ping directly connected ip @
+ - name: check if junos devices can ping ip of their neighbors (directly connected) 
    hosts: Openconfig_Routers
    connection: local
    gather_facts: no
@@ -8,7 +8,7 @@
 
    tasks:
    
-   - name: check if junos devices can ping directly connected ip @
+   - name: check if junos devices can ping ip of their neighbors (directly connected)
      junos_ping:
         host: "{{ junos_host }}"
         user: "{{ ADMUSER }}"
