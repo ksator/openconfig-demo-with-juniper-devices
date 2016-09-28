@@ -22,6 +22,8 @@ script:
   - ansible-playbook pb.oc.bgp.yaml --syntax-check 
   - ansible-playbook pb.rollback.yml --syntax-check
   - ansible-playbook pb.check.api.yml --syntax-check
+  - ansible-playbook pb.check.physical.topology.yml --syntax-check
+
   
 branches:
   only:
