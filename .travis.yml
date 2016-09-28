@@ -18,10 +18,11 @@ install:
   - ansible-galaxy --force install Juniper.junos -p ./
 
 script:
+  - ansible-playbook pb.template.yml
   - ansible-playbook pb.oc.bgp.yaml --syntax-check 
   - ansible-playbook pb.rollback.yml --syntax-check
-  - ansible-playbook pb.template.yml
-
+  - ansible-playbook pb.check.api.yml --syntax-check
+  
 branches:
   only:
    - master
