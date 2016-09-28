@@ -1,4 +1,4 @@
 ---
 topology:
    - interface: xe-1/0/0
-     neigbhbor: FR-MX80-214
+     neighbor: FR-MX80-214
