@@ -1,5 +1,6 @@
 # About this project:   
-Openconfig demo with Juniper routers
+Openconfig with Juniper routers.  
+We built for a demo some automation content for EBGP using Openconfig on Juniper devices (configuration and audit).  
 
 ## Openconfig repository
 The repository for publishing OpenConfig models is https://github.com/openconfig/public   
