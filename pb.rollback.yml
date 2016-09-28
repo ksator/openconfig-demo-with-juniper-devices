@@ -10,6 +10,7 @@
 
    - name: Rollback junos configuration task
      junos_rollback:
+      #http://junos-ansible-modules.readthedocs.io/en/1.4.0/junos_rollback.html
       host={{ junos_host }}
       user={{ ADMUSER }}
       passwd={{ ADMPASS }}
