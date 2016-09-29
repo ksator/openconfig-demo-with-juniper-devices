@@ -1,8 +1,9 @@
 [![Build Status](https://travis-ci.org/ksator/openconfig-demo.svg?branch=master)](https://travis-ci.org/ksator/openconfig-demo)
 
 ### What to find on this repo:   
+You will find content about how to use Openconfig with Juniper devices.   
 I built this repo to run an Openconfig demo on Juniper devices.  
-You will find content about how to use Openconfig with Juniper devices.  It covers various approaches to interact with the devices: 
+It covers various options to interact with Juniper devices running Openconfig modules:     
 **CLI**   
 **Ansible**   
 **PyEZ** (python librairy to interact with Junos)   
