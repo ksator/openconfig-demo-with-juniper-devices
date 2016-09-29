@@ -1,17 +1,19 @@
 [![Build Status](https://travis-ci.org/ksator/openconfig-demo.svg?branch=master)](https://travis-ci.org/ksator/openconfig-demo)
 
 ### What to find on this repo:   
-You will find content about how to use Openconfig with Juniper devices.   
-I built this repo to run an Openconfig demo on Juniper devices.  
+Content about how to use Openconfig with Juniper devices.   
+I built it to run an Openconfig demo on Juniper devices.  
 It covers various options to interact with Juniper devices running Openconfig modules:     
-- **CLI**   
-- **Ansible**   
-- **PyEZ** (python librairy to interact with Junos)   
-- **nnclient** (python netconf client)  
-- **Netconf** (using RPCs inside a netconf session)  
+- Devices Command Line Interface 
+- Network automation with Ansible   
+- Network automation with PyEZ (python library to interact with Junos)   
+- Network automation with nnclient (python netconf client)  
+- Using RPCs inside a NetConf session  
 
-So it also includes automation content about Openconfig on Juniper devices.  
-It also covers basic usages of **pyang** and **pyangbind**.  
+So it also includes various automation content about Openconfig on Juniper devices.  
+It also covers basic usages of nice tools for YANG:  
+- pyang  
+- pyangbind    
 
 ### Doc
 Please visit wiki to read the doc regarding this project (https://github.com/ksator/openconfig-demo/wiki)
