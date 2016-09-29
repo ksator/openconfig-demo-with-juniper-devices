@@ -8,8 +8,10 @@ It covers various options to interact with Juniper devices running Openconfig mo
 - **Ansible**   
 - **PyEZ** (python librairy to interact with Junos)   
 - **nnclient** (python netconf client)  
-- **Netconf** (RPCs inside a netconf session)  
+- **Netconf** (using RPCs inside a netconf session)  
+
 So it also includes automation content about Openconfig on Juniper devices.  
+It also covers basic usage of **pyang** and **pyangbind**.  
 
 ### Doc
 Please visit wiki to read the doc regarding this project (https://github.com/ksator/openconfig-demo/wiki)
