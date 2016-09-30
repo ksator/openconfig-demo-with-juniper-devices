@@ -8,9 +8,9 @@ It covers various options to interact with Juniper devices running Openconfig mo
 - Network automation with Ansible   
 - Network automation with PyEZ (python library to interact with Junos)   
 - Network automation with nnclient (python netconf client)  
-- Using RPCs inside a NetConf session  
+- Sending RPCs inside a NetConf session (using an SSH connection)
 
-So it also includes various automation content about Openconfig on Juniper devices.  
+So it includes also various automation content about Openconfig on Juniper devices.  
 It also covers basic usages of nice tools for YANG:  
 - pyang  
 - pyangbind    
