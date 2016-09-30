@@ -2,16 +2,16 @@
 
 ### What to find on this repo:   
 Content about how to use Openconfig with Juniper devices.   
-I built it to run an Openconfig demo on Juniper devices.  
+I built it to run an Openconfig demo with Juniper devices.  
 It covers various options to interact with Juniper devices running Openconfig modules:     
-- Devices CLI (Command Line Interface) 
+- Devices CLI (Command Line Interface) (for Humans)
+- NetConf in an SSH connection
 - Network automation with Ansible   
 - Network automation with PyEZ (python library to interact with Junos)   
 - Network automation with nnclient (python netconf client)  
-- NetConf in an SSH connection
 
-So it includes also various automation content about Openconfig on Juniper devices.  
-It also covers basic usages of nice tools for YANG:  
+So it includes also various automation content about using Openconfig with Juniper devices.  
+It also covers basic usages of some nice tools for YANG:  
 - pyang  
 - pyangbind    
 
