@@ -67,11 +67,11 @@ for device in my_list_of_devices:
     dev.open()
     bgp=BGPNeighborTable (dev)
     bgp.get()
-    print "\nStatus of BGP sessions for device " + device["host_name"] + ':'
+    print "Status of BGP sessions for device " + device["host_name"] + ':'
     for item in bgp:
         print item.neighbor + " is " + item.state
     dev.close()
-print '\nDone for all the devices!\n'
+print 'Done for all the devices!\n'
 
 print 'Auditing the BGP states using NetConf standard operations to pull state data (config false of OpenConfig YANG modules):'
 from lxml import etree
@@ -80,9 +80,9 @@ rpc = E('get', E('filter', {'type': 'xpath', 'source': '/bgp'}))
 for item in my_list_of_devices:
     dev = Device(host=item["management_ip"], user='tiaddemo', password='OpenConfig')
     dev.open()
-    print "\nStatus of BGP sessions for device " + item["host_name"] + ':'
+    print "Status of BGP sessions for device " + item["host_name"] + ':'
     op = dev.execute(rpc)
     for neighbor in op.findall("bgp/neighbors/neighbor"): 
         print "Neighbor " + neighbor.findtext("neighbor-address") + " is " + neighbor.findtext("state/session-state")
     dev.close()
-print '\nDone for all the devices!\n'
+print 'Done for all the devices!\n'
