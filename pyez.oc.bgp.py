@@ -61,7 +61,7 @@ time.sleep(20)
 audit BGP states with tables and view
 Please add table and view for bgp before as it is not provided by PyEZ.
 '''
-print 'Auditing the BGP states:'
+print 'Auditing the BGP states using PyEZ Tables and Views:'
 for device in my_list_of_devices:
     dev = Device(host=device["management_ip"], user='tiaddemo', password='OpenConfig') 
     dev.open()
@@ -72,3 +72,18 @@ for device in my_list_of_devices:
         print item.neighbor + " is " + item.state
     dev.close()
 print '\nDone for all the devices!\n'
+
+print 'auditing the BGP states using NetConf standard operations to pull state data (config false of OpenConfig YANG modules)'
+from lxml import etree
+from lxml.builder import E
+rpc = E('get', E('filter', {'type': 'xpath', 'source': '/bgp'}))
+for item in my_list_of_devices:
+    dev = Device(host=item["management_ip"], user='tiaddemo', password='OpenConfig')
+    dev.open()
+    op = dev.execute(rpc)
+    print op.findtext("bgp/neighbors/neighbor/state/session-state")
+    assert(op.findtext("bgp/neighbors/neighbor/state/session-state")=="ESTABLISHED"), "BGP OC Neighbor is not established"
+    dev.close()
+
+
+
