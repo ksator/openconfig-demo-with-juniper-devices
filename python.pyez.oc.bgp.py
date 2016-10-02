@@ -16,7 +16,7 @@ template=Template(data)
 f.close()
 
 # build from a jinja2 template the configuration file for each device
-print 'build the configuration file for each device from a jinja2 template'
+print '\nbuild the configuration file for each device from a jinja2 template'
 for item in my_list_of_devices:
     # get the variables definition for this item. item_vars is a python variable (dictionary) 
     f=open('host_vars/'+item["host_name"]+'/bgp.yml')
@@ -42,4 +42,4 @@ for item in my_list_of_devices:
         else:
                 print ('commit failed on ' + item["host_name"])
         dev.close()
-print ('done for all the devices')
+print ('done for all the devices\n')
