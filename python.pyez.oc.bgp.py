@@ -4,6 +4,7 @@ from jinja2 import Template
 from yaml import load
 from jnpr.junos import Device
 from jnpr.junos.utils.config import Config
+from jnpr.junos.op.bgp import BGPNeighborTable
 import time
 import sys
 
@@ -55,6 +56,7 @@ print ('done for all the devices\n')
 time.sleep(20)
 
 # audit BGP states with tables and view
+# PyEZ doesn’t provide table and view for bgp. please make sure you added it.
 for device in my_list_of_devices:
     dev = Device(host=device["management_ip"], user='tiaddemo', password='OpenConfig') 
     dev.open()
