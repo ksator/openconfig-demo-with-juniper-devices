@@ -50,3 +50,17 @@ for item in my_list_of_devices:
         print ('commit failed on ' + item["host_name"])
     dev.close()
 print ('done for all the devices\n')
+
+# Wait for 20 seconds. so BGP sessions will be established.  
+time.sleep(20)
+
+# audit BGP states with tables and view
+for device in my_list_of_devices:
+    dev = Device(host=device["management_ip"], user='tiaddemo', password='OpenConfig') 
+    dev.open()
+    bgp=BGPNeighborTable (dev)
+    bgp.get()
+    print "\nstatus of BGP neighbors for device " + device["host_name"]
+    for item in bgp:
+        print "BGP sesion with neighbor: " + item.neighbor + " is " + item.type
+    dev.close()
