@@ -4,14 +4,14 @@ from jinja2 import Template
 from yaml import load
 from jnpr.junos import Device
 from jnpr.junos.utils.config import Config
-from time import sleep 
-from sys import arg
+import time
+import sys
 
 ''' 
 argv[1] is the first command-line argument. 
 my_list_of_devices.yml yaml file has the list of devices: my_list_of_devices is a python variable (python list).
 '''
-f=open(argv[1])
+f=open(sys.argv[1])
 data=f.read()
 my_list_of_devices=load(data)
 f.close()
