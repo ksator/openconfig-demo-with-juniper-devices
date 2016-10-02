@@ -33,13 +33,13 @@ print 'done for all the devices\n'
 # load and commit the configuration file for each device
 print 'applying the configuration files to the devices ...'
 for item in my_list_of_devices:
-        dev = Device(host=item["management_ip"], user='tiaddemo', password='OpenConfig')
-        dev.open()
-        cfg=Config(dev)
-        cfg.load(path=item["host_name"]+'.oc.bgp.conf', format='text')
-        if cfg.commit(comment="from PyEZ") == True:
-                print ('configuration commited on ' + item["host_name"])
-        else:
-                print ('commit failed on ' + item["host_name"])
-        dev.close()
+    dev = Device(host=item["management_ip"], user='tiaddemo', password='OpenConfig')
+    dev.open()
+    cfg=Config(dev)
+    cfg.load(path=item["host_name"]+'.oc.bgp.conf', format='text')
+    if cfg.commit(comment="from PyEZ") == True:
+        print ('configuration commited on ' + item["host_name"])
+    else:
+        print ('commit failed on ' + item["host_name"])
+    dev.close()
 print ('done for all the devices\n')
