@@ -1,0 +1,9 @@
+---
+ - host_name: FR-MX80-214
+   management_ip: 172.30.108.214
+
+ - host_name: MX240-04
+   management_ip: 172.30.108.210 
+
+
+
