@@ -37,7 +37,7 @@ for item in my_list_of_devices:
         dev.open()
         cfg=Config(dev)
         cfg.load(path=item["host_name"]+'.oc.bgp.conf', format='text')
-        if cfg.commit() == True:
+        if cfg.commit(comment="from PyEZ") == True:
                 print ('configuration commited on ' + item["host_name"])
         else:
                 print ('commit failed on ' + item["host_name"])
