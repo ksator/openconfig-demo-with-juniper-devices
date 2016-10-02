@@ -30,7 +30,7 @@ for item in my_list_of_devices:
     conffile.close()
 print 'done for all the devices\n'
 
-# apply the configuration file for each device
+# load and commit the configuration file for each device
 print 'applying the configuration files to the devices ...'
 for item in my_list_of_devices:
         dev = Device(host=item["management_ip"], user='tiaddemo', password='OpenConfig')
