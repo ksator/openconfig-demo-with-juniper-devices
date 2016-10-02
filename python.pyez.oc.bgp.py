@@ -9,7 +9,7 @@ import sys
 
 ''' 
 argv[1] is the first command-line argument. 
-my_list_of_devices.yml yaml file has the list of devices: my_list_of_devices is a python variable (python list).
+my_list_of_devices.yml is a yaml file with the list of devices. my_list_of_devices is a python variable (python list).
 '''
 f=open(sys.argv[1])
 data=f.read()
