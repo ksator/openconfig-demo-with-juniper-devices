@@ -18,7 +18,6 @@ install:
   - ansible-galaxy --force install Juniper.junos -p ./
 
 script:
-  - ansible-playbook pb.check.api.yml --syntax-check
   - ansible-playbook pb.check.physical.topology.yml --syntax-check
   - ansible-playbook pb.ping.yml --syntax-check
   - ansible-playbook pb.template.yml
