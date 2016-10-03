@@ -5,8 +5,11 @@ from yaml import load
 from jnpr.junos import Device
 from jnpr.junos.utils.config import Config
 from jnpr.junos.op.bgp import BGPNeighborTable
+from lxml import etree
+from lxml.builder import E
 import time
 import sys
+
 
 ''' 
 argv[1] is the first command-line argument. 
@@ -73,9 +76,7 @@ for device in my_list_of_devices:
     dev.close()
 print 'Done for all the devices!\n'
 
-print 'Auditing the BGP states using NetConf standard operations to pull state data (config false of OpenConfig YANG modules):'
-from lxml import etree
-from lxml.builder import E
+print 'Auditing the BGP states pulling state data using NetConf get as per standard (Junos render the state data in Openconfig format):' 
 rpc = E('get', E('filter', {'type': 'xpath', 'source': '/bgp'}))
 for item in my_list_of_devices:
     dev = Device(host=item["management_ip"], user='tiaddemo', password='OpenConfig')
