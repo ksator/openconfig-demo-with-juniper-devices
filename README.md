@@ -2,7 +2,7 @@
 
 ### What to find on this repo:   
 Content about how to use Openconfig with Juniper devices.   
-I built it to run an Openconfig demo with Juniper devices.  
+I built it to run an Openconfig demo with Juniper devices (using OpenConfig BGP models).    
 It covers various options to interact with Juniper devices running Openconfig modules:     
 - Devices CLI (Command Line Interface) (for Humans)
 - NetConf in an SSH connection
