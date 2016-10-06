@@ -8,7 +8,7 @@ It covers various options to interact with Juniper devices running Openconfig mo
 - NetConf in an SSH connection (low level operations)  
 - Network automation with Ansible (network automation with a high level of abstraction)   
 - Network automation with PyEZ (python library to interact with Junos)   
-- Network automation with nnclient (netconf client python library) (network automation with low level operations)  
+- Network automation with nnclient (netconf client python library) (low level operations with automation)  
 
 So it includes also various automation content about using Openconfig with Juniper devices.  
 It also covers basic usages of some nice tools for YANG:  
