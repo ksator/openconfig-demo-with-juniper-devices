@@ -15,6 +15,13 @@
       src: "{{ playbook_dir }}/bgp.j2"
       comment: "OC BGP configuration from Ansible"
       backup: true
+      
+   - name: Send Slack notification to the team
+     local_action:
+       module: slack
+       token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
+       icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
+       msg: "configuration commited on {{ inventory_hostname }}"
 
  - name: wait for peers to establish BGP connections
    hosts: localhost
@@ -57,3 +64,15 @@
       interval: 2
      with_items:
      - "{{ bgp_neighbors }}"
+     
+   - name: Send Slack notification to the team
+     local_action:
+       module: slack
+       icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
+       token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
+       msg: "audit completed on {{ inventory_hostname }} "
+
+
+
+
+
