@@ -19,8 +19,7 @@ It also covers basic usages of some nice tools for YANG:
 ### Doc
 We used this presentation before the demo [Network Automation with Ansible and OpenConfig YANG.pdf](https://github.com/ksator/openconfig-demo/blob/master/Network%20Automation%20with%20Ansible%20and%20OpenConfig%20YANG.pdf)
 
-Please visit [wiki] (https://github.com/ksator/openconfig-demo/wiki) to read the doc regarding this project
-
+Please visit [wiki] (https://github.com/ksator/openconfig-demo/wiki) to get all the details regarding this project
 
 In order to download both the code and the wiki:  
 ```
