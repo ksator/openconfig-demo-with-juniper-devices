@@ -19,9 +19,12 @@
    - name: Send Slack notification to the team
      local_action:
        module: slack
+       #http://docs.ansible.com/ansible/slack_module.html
+       username: "Ansible on {{ inventory_hostname }}"
+       channel: general       
        token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
-       msg: "configuration commited on {{ inventory_hostname }} using pb.oc.bgp.yaml"
+       msg: "configuration commited using pb.oc.bgp.yaml"
 
  - name: wait for peers to establish BGP connections
    hosts: localhost
@@ -68,9 +71,12 @@
    - name: Send Slack notification to the team
      local_action:
        module: slack
+       #http://docs.ansible.com/ansible/slack_module.html
        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
        token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
-       msg: "audit completed on {{ inventory_hostname }} using pb.oc.bgp.yaml"
+       username: "Ansible on {{ inventory_hostname }}"
+       channel: general
+       msg: "audit completed using pb.oc.bgp.yaml"
 
 
 
