@@ -17,6 +17,8 @@ It also covers basic usages of some nice tools for YANG:
 - pyangbind    
 
 ### Doc
+We used this presentation before the demo [Network Automation with Ansible and OpenConfig YANG.pdf](https://github.com/ksator/openconfig-demo/blob/master/Network%20Automation%20with%20Ansible%20and%20OpenConfig%20YANG.pdf)
+
 Please visit wiki to read the doc regarding this project (https://github.com/ksator/openconfig-demo/wiki)
 
 
