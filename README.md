@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ksator/openconfig-demo.svg?branch=master)](https://travis-ci.org/ksator/openconfig-demo)
+[![Build Status](https://travis-ci.org/ksator/openconfig-demo-in-ams.svg?branch=master)](https://travis-ci.org/ksator/openconfig-demo-in-ams)
 
 ### What to find on this repo:   
 Content about how to use Openconfig with Juniper devices.   
