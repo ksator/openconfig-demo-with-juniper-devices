@@ -1,0 +1,42 @@
+language: python
+python:
+  - 2.7
+
+sudo: required
+dist: trusty
+
+env:
+  - ANSIBLE_VERSION=2.1.0.0
+  - ANSIBLE_VERSION=2.1.1.0
+  - ANSIBLE_VERSION=2.2.0.0
+  
+before_install:
+  - sudo apt-get install -y python-dev libxml2-dev python-pip libxslt1-dev build-essential libssl-dev libffi-dev
+
+install:
+  - pip install -r requirements.txt
+  - pip install -q ansible==$ANSIBLE_VERSION
+  - ansible-galaxy --force install Juniper.junos -p ./
+
+script:
+  - ansible-playbook pb.backup.yml --syntax-check
+  - ansible-playbook pb.check.L2.L3.yml --syntax-check
+  - ansible-playbook pb.check.interfaces.yml --syntax-check
+  - ansible-playbook pb.conf.bgp.oc.yaml --syntax-check
+  - ansible-playbook pb.conf.interfaces.yml --syntax-check
+  - ansible-playbook pb.render.template.yml
+  - ansible-playbook pb.rollback.yml --syntax-check
+  - python -m py_compile pyez.oc.bgp.py 
+
+  
+branches:
+  only:
+   - master
+
+notifications:
+  email:
+    recipients:
+      - khelil.sator.git@gmail.com
+    on_failure: always
+  slack: 
+ksator-junos:PLH8kAE04Zukod83ejgNxlBz
