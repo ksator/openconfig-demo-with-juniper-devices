@@ -1,3 +1,14 @@
+interfaces {
+{% for item in topology %}
+    {{ item.interface }} {
+        unit 0 {
+            family inet {
+                address {{ item.address }}/24;
+            }
+       }
+    }
+{% endfor %}
+}
 openconfig-bgp:bgp {
     neighbors {
 {% for item in bgp_neighbors %}

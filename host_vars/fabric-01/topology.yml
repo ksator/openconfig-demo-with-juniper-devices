@@ -1,0 +1,6 @@
+---
+topology:
+   - interface: xe-0/0/0
+     address: 192.168.1.1
+     neighbor: fabric-02
+    

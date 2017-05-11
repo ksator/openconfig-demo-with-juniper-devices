@@ -1,0 +1,45 @@
+---
+ - name: L2 and L3 checks 
+   hosts: Openconfig_Routers
+   connection: local
+   gather_facts: no
+   roles: 
+   - Juniper.junos
+
+   tasks:
+
+   - name: check if lldp neighbors are the ones we expect
+     junos_command:
+      provider: "{{ credentials }}"
+      commands:
+       - show lldp neighbors interface {{ item.interface }}
+      waitfor:
+       - "result[0].lldp-neighbors-information.lldp-neighbor-information.lldp-remote-system-name contains {{ item.neighbor }}"
+      retries: 5
+      interval: 2
+     with_items:
+     - "{{ topology }}"
+   
+   - name: check if junos devices can ping ip of their neighbors (directly connected)
+     junos_ping:
+        host: "{{ junos_host }}"
+        user: "{{ ADMUSER }}"
+        passwd: "{{ ADMPASS }}"
+        dest_ip: "{{ item.address }}"
+        source_ip: "{{ item.local_address }}"
+        ttl: 1
+     with_items:
+     - "{{ bgp_neighbors }}"
+
+   - name: Send Slack notification to the team
+     local_action:
+       module: slack
+       #http://docs.ansible.com/ansible/slack_module.html
+       username: "Ansible on {{ inventory_hostname }}"
+       channel: openconfig
+       token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
+       icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
+       msg: "check completed using pb.check.L2.L3.yml"
+
+
+

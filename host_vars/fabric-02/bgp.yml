@@ -1,10 +1,9 @@
 ---
 bgp_neighbors:
-   - address: 10.10.0.2
-     local_address: 10.10.0.1
+   - address: 192.168.1.1
+     local_address: 192.168.1.2
      as: 104
      group: OC
-
 
 bgp_groups:
    - name: OC

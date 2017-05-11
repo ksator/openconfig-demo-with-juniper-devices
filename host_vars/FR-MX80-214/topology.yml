@@ -1,4 +1,0 @@
----
-topology:
-   - interface: xe-0/0/1
-     neighbor: MX240-04

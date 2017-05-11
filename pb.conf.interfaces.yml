@@ -1,0 +1,28 @@
+---
+ - name: create interfaces configuration
+   hosts: Openconfig_Routers
+   connection: local
+   gather_facts: no
+   tags:
+   - configuration
+
+   tasks:
+
+   - name: Push on interfaces config from templates, and commit.
+     junos_template:
+      #http://docs.ansible.com/ansible/junos_template_module.html
+      provider: "{{  credentials }}"
+      src: "{{ playbook_dir }}/interfaces.j2"
+      comment: "interfaces configuration from Ansible"
+
+   - name: Send Slack notification to the team
+     local_action:
+       module: slack
+       #http://docs.ansible.com/ansible/slack_module.html
+       username: "Ansible on {{ inventory_hostname }}"
+       channel: openconfig
+       token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
+       icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
+       msg: "configuration commited using pb.conf.interfaces.yml"
+
+
