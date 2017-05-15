@@ -1,4 +1,4 @@
-#USAGE: python python.pyez.oc.bgp.py my_list_of_devices.yml
+#USAGE: python pyez.oc.bgp.py my_list_of_devices.yml
 
 from jinja2 import Template
 from yaml import load
