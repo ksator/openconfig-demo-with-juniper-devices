@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/ksator/openconfig-demo-with-juniper-devices.svg?branch=master)](https://travis-ci.org/ksator/openconfig-demo-with-juniper-devices)
 
 ### What to find on this repo:   
-Content about how to configure Juniper devices with Openconfig data models. It covers various options:
+How to configure Juniper routers using configuration data models written in YANG and published by Openconfig.  
+It covers various options:
 - Devices Command Line Interface
 - NetConf in an SSH connection 
 - Network automation with Ansible
