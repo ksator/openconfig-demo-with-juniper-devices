@@ -16,6 +16,8 @@ openconfig-bgp:bgp {
             config {
                 peer-as {{ item.as }};
                 peer-group {{ item.group }} ;
+                neighbor-address {{ item.address }};
+                enabled true;
             }
         }
 {% endfor %}
@@ -26,6 +28,7 @@ openconfig-bgp:bgp {
             config {
                 local-as {{ item.local_as }};
                 peer-type {{ item.type }};
+                peer-group-name {{ item.name }};
             }
             apply-policy {
                 config {
