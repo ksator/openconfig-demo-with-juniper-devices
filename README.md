@@ -15,7 +15,7 @@ It also covers basic usages of YANG tools:
 - pyangbind
 
 ### Doc: 
-A [presentation](https://github.com/ksator/openconfig-demo-with-juniper-devices/blob/master/Network%20Automation%20with%20Ansible%20and%20OpenConfig%20YANG.pdf) is at the root of the repo.   
+A [presentation](https://github.com/ksator/openconfig-demo-with-juniper-devices/blob/master/NETCONF_YANG_OpenConfig_overview.pdf) is at the root of the repo.   
 Please visit [wiki](https://github.com/ksator/openconfig-demo-with-juniper-devices/wiki) to get all the details regarding this project.  
 
 ### How to clone this repo:
