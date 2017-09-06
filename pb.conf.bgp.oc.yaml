@@ -62,7 +62,7 @@
       commands:
        - show route receive-protocol bgp "{{ item.address }}" table inet.0
       waitfor:
-       - "result[0].route-information.route-table.total-route-count gt 10"
+       - "result[0].route-information.route-table.total-route-count gt 2"
       retries: 10
       interval: 2
      with_items:
