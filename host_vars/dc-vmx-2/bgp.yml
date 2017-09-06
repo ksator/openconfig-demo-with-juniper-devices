@@ -1,0 +1,17 @@
+---
+bgp_neighbors:
+   - address: 192.168.1.1
+     local_address: 192.168.1.2
+     as: 104
+     group: OC
+
+bgp_groups:
+   - name: OC
+     type: EXTERNAL
+     local_as: 110
+     import_policy: bgp-in
+     export_policy: bgp-out
+
+
+
+
