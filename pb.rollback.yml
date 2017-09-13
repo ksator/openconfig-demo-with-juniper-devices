@@ -29,5 +29,6 @@
        token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
        msg: "configuration rolled back using pb.rollback.yml with rb_id {{rbid}}"
+       validate_certs: false
 
 
