@@ -25,6 +25,7 @@
        token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
        msg: "configuration commited using pb.conf.bgp.oc.yaml"
+       validate_certs: false
 
  - name: wait for peers to establish BGP connections
    hosts: localhost
@@ -77,6 +78,7 @@
        username: "Ansible on {{ inventory_hostname }}"
        channel: openconfig
        msg: "audit completed using pb.conf.bgp.oc.yaml"
+       validate_certs: false
 
 
 
