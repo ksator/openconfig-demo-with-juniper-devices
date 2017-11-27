@@ -9,6 +9,7 @@ interfaces {
     }
 {% endfor %}
 }
+replace: 
 openconfig-bgp:bgp {
     neighbors {
 {% for item in bgp_neighbors %}
@@ -40,6 +41,18 @@ openconfig-bgp:bgp {
 {% endfor %}
     }
 }
+protocols {
+replace:
+    lldp {
+{% for item in topology %}
+        interface "{{ item.interface }}";
+{% endfor %}
+        interface fxp0 {
+            disable;
+        }
+    }
+}
+replace: 
 policy-options {
 {% for item in bgp_groups %}
     policy-statement {{ item.import_policy }} {
