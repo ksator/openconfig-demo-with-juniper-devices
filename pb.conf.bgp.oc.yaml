@@ -34,7 +34,7 @@
    gather_facts: no
 
    tasks:
-   - pause: seconds=20
+   - pause: seconds=25
      #http://docs.ansible.com/ansible/pause_module.html
 
  - name: check bgp states

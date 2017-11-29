@@ -1,0 +1,7 @@
+
+[edit system syslog]
+-    host 172.30.52.150 {
+-        any any;
+-        match UI_COMMIT_COMPLETED;
+-        port 516;
+-    }
