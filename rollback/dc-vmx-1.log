@@ -1,0 +1,32 @@
+2018-01-22 11:26:52,753:CONFIG:172.30.52.85:connecting to host: lab@172.30.52.85:830
+2018-01-22 11:26:52,827:ncclient.transport.ssh:Connected (version 2.0, client OpenSSH_7.2)
+2018-01-22 11:26:53,152:ncclient.transport.ssh:Authentication (password) successful!
+2018-01-22 11:26:53,545:ncclient.transport.session:initialized: session-id=41520 | server_capabilities=<dictionary-keyiterator object at 0x7fd22c267aa0>
+2018-01-22 11:26:53,546:CONFIG:172.30.52.85:taking lock
+2018-01-22 11:26:53,546:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:26:53,868:CONFIG:172.30.52.85:Rolling back to: 1
+2018-01-22 11:26:53,868:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:26:54,040:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:26:54,261:CONFIG:172.30.52.85:committing change, please be patient
+2018-01-22 11:26:54,261:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:26:56,295:CONFIG:172.30.52.85:change completed
+2018-01-22 11:26:56,296:CONFIG:172.30.52.85:unlocking
+2018-01-22 11:26:56,296:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:26:56,466:ncclient.operations.rpc:Requesting 'CloseSession'
+2018-01-22 11:50:27,815:CONFIG:172.30.52.85:connecting to host: lab@172.30.52.85:830
+2018-01-22 11:50:27,897:ncclient.transport.ssh:Connected (version 2.0, client OpenSSH_7.2)
+2018-01-22 11:50:28,207:ncclient.transport.ssh:Auth banner: whatever
+
+2018-01-22 11:50:28,207:ncclient.transport.ssh:Authentication (password) successful!
+2018-01-22 11:50:28,639:ncclient.transport.session:initialized: session-id=44259 | server_capabilities=<dictionary-keyiterator object at 0x7f7ffc267aa0>
+2018-01-22 11:50:28,640:CONFIG:172.30.52.85:taking lock
+2018-01-22 11:50:28,640:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:50:28,961:CONFIG:172.30.52.85:Rolling back to: 1
+2018-01-22 11:50:28,961:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:50:29,131:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:50:29,402:CONFIG:172.30.52.85:committing change, please be patient
+2018-01-22 11:50:29,403:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:50:31,446:CONFIG:172.30.52.85:change completed
+2018-01-22 11:50:31,446:CONFIG:172.30.52.85:unlocking
+2018-01-22 11:50:31,446:ncclient.operations.rpc:Requesting 'ExecuteRpc'
+2018-01-22 11:50:31,564:ncclient.operations.rpc:Requesting 'CloseSession'
