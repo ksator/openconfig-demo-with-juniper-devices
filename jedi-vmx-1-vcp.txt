@@ -1,0 +1,55 @@
+interfaces {
+    ge-0/0/0 {
+        unit 0 {
+            family inet {
+                address 192.168.1.1/24;
+            }
+       }
+    }
+}
+replace: 
+openconfig-bgp:bgp {
+    neighbors {
+        neighbor 192.168.1.2 {
+            config {
+                peer-as 110;
+                peer-group OC ;
+                neighbor-address 192.168.1.2;
+                enabled true;
+            }
+        }
+    }
+    peer-groups {
+        peer-group OC {
+            config {
+                local-as 104;
+                peer-type EXTERNAL;
+                peer-group-name OC;
+            }
+            apply-policy {
+                config {
+                    import-policy bgp-in;
+                    export-policy bgp-out;
+                }
+            }
+        }
+    }
+}
+protocols {
+replace:
+    lldp {
+        interface "ge-0/0/0";
+        interface fxp0 {
+            disable;
+        }
+    }
+}
+replace: 
+policy-options {
+    policy-statement bgp-in {
+        then accept;
+    }
+    policy-statement bgp-out {
+        then accept;
+    }
+}
