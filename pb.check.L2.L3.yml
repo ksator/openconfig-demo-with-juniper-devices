@@ -20,6 +20,7 @@
       interval: 2
      with_items:
      - "{{ topology }}"
+     when: ansible_version['major'] == 2 and ansible_version['minor']|int >= 4
    
    - name: check if junos devices can ping ip of their neighbors (directly connected)
      junos_ping:

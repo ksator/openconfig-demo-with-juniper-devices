@@ -3,10 +3,10 @@
 #fabric-01  junos_host=172.30.54.235
 #fabric-02  junos_host=172.30.54.146
 
-#dc-vmx-2  junos_host=172.30.52.86
-#dc-vmx-1  junos_host=172.30.52.85
+dc-vmx-2  junos_host=172.30.52.86
+dc-vmx-1  junos_host=172.30.52.85
 
-jedi-vmx-1-vcp junos_host=172.30.52.155
-jedi-vmx-2-vcp junos_host=172.30.52.156
+#jedi-vmx-1-vcp junos_host=172.30.52.155
+#jedi-vmx-2-vcp junos_host=172.30.52.156
 
 

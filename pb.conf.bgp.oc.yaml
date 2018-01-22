@@ -62,6 +62,7 @@
        - "result[0]['rpc-reply']['interface-information']['physical-interface']['oper-status'] eq up"
      with_items: 
      - "{{ topology }}" 
+     when: ansible_version['major'] == 2 and ansible_version['minor']|int >= 4     
 
    - name: check if lldp neighbors are the ones we expect
      junos_command:
@@ -75,7 +76,10 @@
       interval: 2
      with_items:
      - "{{ topology }}"
-   
+     when: ansible_version['major'] == 2 and ansible_version['minor']|int >= 4
+  
+
+ 
    - name: check if junos devices can ping BGP peer ip addresses
      junos_ping:
         host: "{{ junos_host }}"
@@ -100,7 +104,8 @@
       interval: 2
      with_items:
      - "{{ bgp_neighbors }}"
-#     no_log: True 
+     when: ansible_version['major'] == 2 and ansible_version['minor']|int >= 4
+#    no_log: True 
 
    - name: check if junos devices learnt some routes with BGP
      junos_command:
@@ -115,7 +120,8 @@
       interval: 2
      with_items:
      - "{{ bgp_neighbors }}"
-#     no_log: True
+     when: ansible_version['major'] == 2 and ansible_version['minor']|int >= 4
+#    no_log: True
      
    - name: Send Slack notification to the team
      local_action:

@@ -16,6 +16,7 @@
        - "result[0]['rpc-reply']['interface-information']['physical-interface']['oper-status'] eq up"
      with_items: 
      - "{{ topology }}"  
+     when: ansible_version['major'] == 2 and ansible_version['minor']|int >= 4
  
    - name: Send Slack notification to the team
      local_action:
