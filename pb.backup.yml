@@ -1,38 +1,76 @@
 ---
- - name: make sure the directory backup exists  
-   hosts: localhost
-   gather_facts: no
-   
-   tasks:
-    
-   - name: create a directory
-     file: path={{playbook_dir}}/backup state=directory
+- name: create configuration_backup directories
+  hosts: localhost
+  gather_facts: no
+  tasks:
 
- - name: Collect configuration from devices
-   hosts: [Openconfig_Routers]
-   connection: local
-   gather_facts: no
-   tasks:
+   - name: create configuration directory
+     file:
+       path: "{{playbook_dir}}/backup"
+       state: directory
 
-## This playbook will query facts and configuration in text format
-## and Store the configuration in Ansible server
 
-    - name: Collect configuration from devices
-      junos_facts:
-        config: yes
-        config_format: text
-        provider: "{{ credentials }}"
-      register: result
+   - name: create configuration subdirectories
+     file:
+       path: "{{playbook_dir}}/backup/{{ item }}"
+       state: directory
+     with_items:
+       - text
+       - xml
+       - json
+       - set 
 
-    - name: Save configuration to file in local directory
-      copy: content="{{ result.ansible_facts.config }}" dest={{playbook_dir}}/backup/{{inventory_hostname}}.conf
-      
-    - name: Send Slack notification
-      local_action:
-        module: slack
-        #http://docs.ansible.com/ansible/slack_module.html
-        username: "Playbook pb.backup.yml"
-        channel: openconfig       
-        token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
-        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
-        msg: "saved configuration of device {{ inventory_hostname }}"
+- name: Collect configuration from devices
+  hosts: [Openconfig_Routers]
+  connection: local
+  gather_facts: no
+  tasks:
+
+  - name: Collect configuration in text format from devices
+    junos_facts:
+      gather_subset: config
+      config_format: text
+      provider: "{{ credentials }}"
+    register: "result_text"
+
+  - name: copy collected configuration in configuration/text directory
+    copy: 
+      content: "{{ result_text.ansible_facts.ansible_net_config }}" 
+      dest: "{{ playbook_dir }}/backup/text/{{ inventory_hostname }}.conf"
+ 
+  - name: Collect configuration in set format from devices
+    junos_facts:
+      gather_subset: config
+      config_format: set
+      provider: "{{ credentials }}"
+    register: "result_set"
+
+  - name: copy collected configuration in configuration/set directory
+    copy:
+      content: "{{ result_set.ansible_facts.ansible_net_config }}"
+      dest: "{{ playbook_dir }}/backup/set/{{ inventory_hostname }}.set"
+ 
+  - name: Collect configuration in json format from devices
+    junos_facts:
+      gather_subset: config
+      config_format: json
+      provider: "{{ credentials }}"
+    register: "result_json"
+
+  - name: copy collected configuration in configuration/json directory
+    copy:
+      content: "{{ result_json.ansible_facts.ansible_net_config }}"
+      dest: "{{ playbook_dir }}/backup/json/{{ inventory_hostname }}.json"
+
+  - name: Collect configuration in xml format from devices
+    junos_facts:
+      gather_subset: config
+      config_format: xml
+      provider: "{{ credentials }}"
+    register: "result_xml"
+
+  - name: copy collected configuration in configuration/xml directory
+    copy:
+      content: "{{ result_xml.ansible_facts.ansible_net_config }}"
+      dest: "{{ playbook_dir }}/backup/xml/{{ inventory_hostname }}.xml"
+
