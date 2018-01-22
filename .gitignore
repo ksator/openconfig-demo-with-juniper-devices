@@ -1,6 +1,6 @@
-#*.conf
+*.conf
 *.log
 *.txt
 *.xml
-#*.diff
+*.diff
 *.json

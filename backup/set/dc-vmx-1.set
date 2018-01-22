@@ -2,6 +2,7 @@ set version 17.4R1.16
 set system host-name dc-vmx-1
 set system root-authentication encrypted-password "$5$GUwaYCXP$jxAeAdJ8YT1R0ZPHUcgkRmCYaM5qcfuQTWa5LM38ZFD"
 set system name-server 172.30.207.10
+set system login message whatever
 set system login user SaltStack uid 2001
 set system login user SaltStack class super-user
 set system login user SaltStack authentication encrypted-password "$6$BU8Qv54v$dTjzNE.7LCNLcLzjV5/0aMZQC4Ta96Qo4q3qa.NAIQl58ISyMH0USrG8ydHPEyzP7aNAmZ6JSs.p0lXfcSc.i/"
