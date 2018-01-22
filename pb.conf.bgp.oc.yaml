@@ -7,16 +7,20 @@
    - configuration
 
    tasks:
-  
-   - name: Backup locally the config from the routers. Push on routers OC BGP config from templates, and commit.
-     junos_template:
-      #http://docs.ansible.com/ansible/junos_template_module.html
-      provider: "{{  credentials }}"
+ 
+   - name: Render the template for devices.
+     template:
       src: "{{ playbook_dir }}/bgp.j2"
+      dest: "{{ playbook_dir }}/{{ inventory_hostname }}.txt"
+ 
+   - name: Backup locally the config from the routers. Push on routers OC BGP config from templates, and commit.
+     junos_config:
+      provider: "{{  credentials }}"
+      src: "{{ playbook_dir }}/{{inventory_hostname}}.txt"
       comment: "ansible playbook pb.conf.bgp.oc.yaml"
-      backup: true
-      action: replace 
-      config_format: text
+      backup: yes
+      update: replace 
+      src_format: text
       
    - name: Send Slack notification to the team
      local_action:
@@ -53,8 +57,9 @@
       commands:
        - "show interfaces terse {{ item.interface }}"
       provider: "{{ credentials }}"
+      display: 'xml'
       waitfor:
-       - "result[0].interface-information.physical-interface.oper-status eq up"
+       - "result[0]['rpc-reply']['interface-information']['physical-interface']['oper-status'] eq up"
      with_items: 
      - "{{ topology }}" 
 
@@ -63,8 +68,9 @@
       provider: "{{ credentials }}"
       commands:
        - show lldp neighbors interface {{ item.interface }}
+      display: 'xml'
       waitfor:
-       - "result[0].lldp-neighbors-information.lldp-neighbor-information.lldp-remote-system-name contains {{ item.neighbor }}"
+       - "result[0]['rpc-reply']['lldp-neighbors-information']['lldp-neighbor-information']['lldp-remote-system-name'] == {{ item.neighbor }}"
       retries: 5
       interval: 2
      with_items:
@@ -85,10 +91,11 @@
      junos_command:
       #http://docs.ansible.com/ansible/junos_command_module.html
       provider: "{{  credentials }}"
+      display: 'xml'
       commands:
        - show bgp neighbor "{{ item.address }}"
       waitfor:
-      - "result[0].bgp-information.bgp-peer.peer-state eq Established"
+      - "result[0]['rpc-reply']['bgp-information']['bgp-peer']['peer-state'] eq Established"
       retries: 10
       interval: 2
      with_items:
@@ -102,7 +109,8 @@
       commands:
        - show route receive-protocol bgp "{{ item.address }}" table inet.0
       waitfor:
-       - "result[0].route-information.route-table.total-route-count gt 2"
+       - "result[0]['rpc-reply']['route-information']['route-table']['total-route-count'] gt 2"
+      display: 'xml'
       retries: 10
       interval: 2
      with_items:

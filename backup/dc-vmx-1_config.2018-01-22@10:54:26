@@ -1,0 +1,58 @@
+set version 17.4R1.16
+set system host-name dc-vmx-1
+set system root-authentication encrypted-password "$5$GUwaYCXP$jxAeAdJ8YT1R0ZPHUcgkRmCYaM5qcfuQTWa5LM38ZFD"
+set system name-server 172.30.207.10
+set system login user SaltStack uid 2001
+set system login user SaltStack class super-user
+set system login user SaltStack authentication encrypted-password "$6$BU8Qv54v$dTjzNE.7LCNLcLzjV5/0aMZQC4Ta96Qo4q3qa.NAIQl58ISyMH0USrG8ydHPEyzP7aNAmZ6JSs.p0lXfcSc.i/"
+set system login user ansible uid 2002
+set system login user ansible class super-user
+set system login user ansible authentication ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsN75e6TLiNrLxi5IzllX4nnueSFeEyU2C8febxZEfhkdp9nFYqIqlB50A9nCJnYGcBxzS1hz2HqhZwnoRiN9+KmoWj6YwZhnf9A2HTL2oZJ/H0WnyYK/O/qtPH99zfDjoHYZbEbvJr/Awq2CkxxrAb2Ffhwm0ltw+FseuYRQkBRCKQjFa7Wzf1UeicECsq/lBa72Y02nPd3jLqokriq3kZH4Zbtm03qbPbWpZXeLSDrqmOQcgBLQuO63KqEtcF7GfIQdZxNskfN9rbCQb9wINRc6IFvivKumeAF2Zs+IlbpHMRxQ5QTKrt8vdki8g8hpR2mCmMqF4CH0bZUDNoqap ksator@ubuntu"
+set system login user lab uid 2000
+set system login user lab class super-user
+set system login user lab authentication encrypted-password "$5$94/kMoG6$/1loeInJa3QVUHRvLV4Hlf05OF2tEpVyp4cil3PZmR7"
+set system services ftp
+set system services ssh
+set system services extension-service request-response grpc clear-text port 50051
+set system services extension-service request-response grpc skip-authentication
+set system services extension-service notification allow-clients address 0.0.0.0/0
+set system services extension-service traceoptions file jsd.trace
+set system services extension-service traceoptions flag all
+set system services netconf ssh
+set system syslog user * any emergency
+set system syslog host 172.30.204.10 any any
+set system syslog host 172.30.204.10 match UI_COMMIT_COMPLETED
+set system syslog host 172.30.204.10 port 6000
+set system syslog host 172.30.55.201 any any
+set system syslog host 172.30.55.201 match UI_COMMIT_COMPLETED
+set system syslog host 172.30.55.201 port 6000
+set system syslog host 172.30.52.150 any any
+set system syslog host 172.30.52.150 match UI_COMMIT_COMPLETED
+set system syslog host 172.30.52.150 port 516
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file interactive-commands interactive-commands any
+set system ntp server 172.30.207.10
+set chassis fpc 0 lite-mode
+set chassis network-services enhanced-ip
+set interfaces ge-0/0/0 unit 0 family inet address 192.168.1.1/24
+set interfaces fxp0 unit 0 family inet address 172.30.52.85/24
+set interfaces lo0 unit 0 family inet address 127.0.0.1/32
+set routing-options static route 0.0.0.0/0 next-hop 172.30.52.1
+set protocols mpls interface all
+set protocols mpls interface fxp0.0 disable
+set protocols ldp interface all
+set protocols ldp interface fxp0.0 disable
+set protocols lldp interface ge-0/0/0
+set protocols lldp interface fxp0 disable
+set policy-options policy-statement bgp-in then accept
+set policy-options policy-statement bgp-out then accept
+set openconfig-bgp:bgp neighbors neighbor 192.168.1.2 config peer-group OC
+set openconfig-bgp:bgp neighbors neighbor 192.168.1.2 config neighbor-address 192.168.1.2
+set openconfig-bgp:bgp neighbors neighbor 192.168.1.2 config enabled true
+set openconfig-bgp:bgp neighbors neighbor 192.168.1.2 config peer-as 110
+set openconfig-bgp:bgp peer-groups peer-group OC config peer-group-name OC
+set openconfig-bgp:bgp peer-groups peer-group OC config local-as 104
+set openconfig-bgp:bgp peer-groups peer-group OC config peer-type EXTERNAL
+set openconfig-bgp:bgp peer-groups peer-group OC apply-policy config import-policy bgp-in
+set openconfig-bgp:bgp peer-groups peer-group OC apply-policy config export-policy bgp-out

@@ -12,9 +12,10 @@
      junos_command:
       provider: "{{ credentials }}"
       commands:
-       - show lldp neighbors interface {{ item.interface }}
+       - show lldp neighbors interface "{{ item.interface }}"
+      display: 'xml'
       waitfor:
-       - "result[0].lldp-neighbors-information.lldp-neighbor-information.lldp-remote-system-name contains {{ item.neighbor }}"
+       - "result[0]['rpc-reply']['lldp-neighbors-information']['lldp-neighbor-information']['lldp-remote-system-name'] == {{ item.neighbor }}"
       retries: 5
       interval: 2
      with_items:
@@ -40,6 +41,6 @@
        token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
        msg: "check completed using pb.check.L2.L3.yml"
-
+       validate_certs: false
 
 
