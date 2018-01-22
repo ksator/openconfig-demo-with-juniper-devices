@@ -1,0 +1,29 @@
+
+[edit]
+-  openconfig-bgp:bgp {
+-      neighbors {
+-          neighbor 192.168.1.1 {
+-              config {
+-                  peer-group OC;
+-                  neighbor-address 192.168.1.1;
+-                  enabled true;
+-                  peer-as 104;
+-              }
+-          }
+-      }
+-      peer-groups {
+-          peer-group OC {
+-              config {
+-                  peer-group-name OC;
+-                  local-as 110;
+-                  peer-type EXTERNAL;
+-              }
+-              apply-policy {
+-                  config {
+-                      import-policy bgp-in;
+-                      export-policy bgp-out;
+-                  }
+-              }
+-          }
+-      }
+-  }

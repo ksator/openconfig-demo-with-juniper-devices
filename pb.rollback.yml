@@ -1,24 +1,31 @@
 ---
+ - name: create rolback directory
+   hosts: localhost
+   gather_facts: no
+   tasks:
+
+    - name: create rollback directory
+      file:
+        path: "{{playbook_dir}}/rollback"
+        state: directory
+
  - name: Rollback configuration on junos devices
    hosts: [Openconfig_Routers]
-   roles:       
+   roles:
     - Juniper.junos
    connection: local
    gather_facts: no
-
    tasks:
 
-   - name: Rollback junos configuration task
+   - name: Rollback junos config
      junos_rollback:
-      #http://junos-ansible-modules.readthedocs.io/en/1.4.0/junos_rollback.html
-      host={{ junos_host }}
-      user={{ ADMUSER }}
-      passwd={{ ADMPASS }}
-      logfile={{playbook_dir}}/rollback.log
-      diffs_file={{playbook_dir}}/{{ inventory_hostname }}.diff
-      rollback={{rbid}}
-      comment="configuration rolled back by Ansible"
-   
+      host: "{{ junos_host }}"
+      user: "{{ ADMUSER }}"
+      passwd: "{{ ADMPASS }}"
+      diffs_file: "{{ playbook_dir }}/rollback/{{ inventory_hostname }}.diff"
+      rollback: "{{ rbid }}"
+      logfile: "{{playbook_dir}}/rollback/{{ inventory_hostname }}.log"
+      comment: "configuration rolled back by Ansible using pb.rollback.yml with rb_id {{ rbid }}"
 
    - name: Send Slack notification to the team
      local_action:
@@ -30,5 +37,4 @@
        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
        msg: "configuration rolled back using pb.rollback.yml with rb_id {{rbid}}"
        validate_certs: false
-
 
