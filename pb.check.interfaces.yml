@@ -11,8 +11,9 @@
       commands:
        - "show interfaces terse {{ item.interface }}"
       provider: "{{ credentials }}"
+      display: 'xml'
       waitfor:
-       - "result[0].interface-information.physical-interface.oper-status eq up"
+       - "result[0]['rpc-reply']['interface-information']['physical-interface']['oper-status'] eq up"
      with_items: 
      - "{{ topology }}"  
  
@@ -25,4 +26,4 @@
        token: T2MBN64JX/B2N0Z2MEU/1OoB46XLX6Q1oFf89Xl2X9gq
        icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
        msg: "check completed using pb.check.interfaces.yml"
-
+       validate_certs: false
